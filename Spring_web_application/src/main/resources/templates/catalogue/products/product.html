@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>[[${product.title}]] &ndash; Сельмаг</title>
+    <title>[[${product.title}]] &ndash; Всё, что тебе нужно</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -54,11 +54,13 @@
 </head>
 <body>
 <a class="btn" data-th-href="@{/catalogue/products/list}">&larr; К списку товаров</a>
+
 <h1 data-th-text="${product.title}"></h1>
 <ul>
     <li><strong>ID</strong>: <span data-th-text="${product.id}"></span></li>
     <li><strong>Название товара</strong>: <span data-th-text="${product.title}"></span></li>
     <li><strong>Описание товара</strong>: <span data-th-text="${product.details}"></span></li>
 </ul>
+<a class="btn" data-th-href="@{/catalogue/products/{productId}/edit(productId=${product.id})}">Изменить</a>
 </body>
 </html>
