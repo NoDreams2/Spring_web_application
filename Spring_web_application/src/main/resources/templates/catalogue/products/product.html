@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -37,6 +38,12 @@
         .btn:hover {
             background-color: #0056b3;
         }
+        .btn-delete {
+            background-color: #dc3545; /* Красный цвет для кнопки удаления */
+        }
+        .btn-delete:hover {
+            background-color: #c82333; /* Темный красный цвет на ховер */
+        }
         ul {
             list-style-type: none;
             padding: 0;
@@ -61,6 +68,11 @@
     <li><strong>Название товара</strong>: <span data-th-text="${product.title}"></span></li>
     <li><strong>Описание товара</strong>: <span data-th-text="${product.details}"></span></li>
 </ul>
+
 <a class="btn" data-th-href="@{/catalogue/products/{productId}/edit(productId=${product.id})}">Изменить</a>
+
+<form method="post" data-th-action="@{/catalogue/products/{productId}/delete(productId=${product.id})}">
+    <button type="submit" class="btn btn-delete">Удалить</button>
+</form>
 </body>
 </html>

@@ -4,6 +4,7 @@ import com.example.Spring_web_application.everythingYouNeed.description.Product;
 import org.springframework.stereotype.Repository;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 @Repository
 public class InMemoryProductRepository implements ProductRepository {
@@ -30,5 +31,17 @@ public class InMemoryProductRepository implements ProductRepository {
     return this.products.stream()
             .filter(product -> Objects.equals(productId, product.getId()))
             .findFirst();
+  }
+
+  @Override
+  public void deleteById(Integer id) {
+    boolean isDeleted = this.products.removeIf(product -> Objects.equals(product.getId(), id));
+    if (isDeleted) {
+      IntStream.range(0, this.products.size())
+              .forEach(index -> {
+                Product product = this.products.get(index);
+                product.setId(index + 1);
+              });
+    }
   }
 }
